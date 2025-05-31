@@ -1,0 +1,12 @@
+CHIP Computer {
+    IN clock, reset;
+    OUT screen[16], keyboard[16];
+
+    PARTS:
+    ROM32K(address=pc, out=instruction);
+    CPU(inM=ramOut, instruction=instruction, reset=reset, clk=clock,
+        outM=outM, writeM=writeM, addressM=addressM, pc=pc);
+    Memory(in=outM, load=writeM, address=addressM, out=ramOut);
+    Mux16(a=ramOut, b=screenOut, sel=false, out=screen); // passthrough for simulation
+    Keyboard(out=keyboard);
+}
