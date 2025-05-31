@@ -1,0 +1,7 @@
+CHIP DFF {
+    IN in, clk;
+    OUT out;
+
+    PARTS:
+    DFF(in=in, clk=clk, out=out);
+}
